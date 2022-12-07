@@ -1,0 +1,136 @@
+.frame {
+  overflow-y: auto;
+  height: 500px;
+  padding: 0 10px;
+  overflow-x: hidden;
+}
+
+.frame::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.frame::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.frame::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.frame::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: #d9dcdc;
+}
+.MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root
+  .MuiOutlinedInput-root {
+  padding-right: 45px !important;
+}
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 3px !important;
+}
+
+.MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+  margin-right: 15px !important;
+  font-size: 20px !important;
+}
+
+.input-error-message {
+  color: #d47174;
+  margin-bottom: 0.625rem;
+  position: absolute;
+}
+
+.Mui-checked {
+  color: #00bbb4 !important;
+}
+.Mui-Not-checked {
+  color: #d47174 !important;
+}
+
+.global-error-message {
+  color: #d47174;
+  margin-top: 0.625rem;
+  /* position: absolute; */
+}
+.MuiLinearProgress-barColorPrimary {
+  background-color: #00bbb4 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 0 !important;
+  border-color: transparent !important;
+}
+
+.frame2 {
+  overflow-y: auto;
+  height: calc(100vh - 130px);
+  padding: 0 10px;
+  overflow-x: hidden;
+}
+
+.frame2::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.frame2::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.frame2::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.frame2::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: #d9dcdc;
+}
+.MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root
+  .MuiOutlinedInput-root {
+  padding-right: 45px !important;
+}
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 3px !important;
+}
+
+.MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+  margin-right: 15px !important;
+  font-size: 20px !important;
+}
+
+.input-error-message {
+  color: #d47174;
+  margin-bottom: 0.625rem;
+  position: absolute;
+}
+
+.Mui-checked {
+  color: #00bbb4 !important;
+}
+.Mui-Not-checked {
+  color: #d47174 !important;
+}
+
+.global-error-message {
+  color: #d47174;
+  margin-top: 0.625rem;
+  /* position: absolute; */
+}
+.MuiLinearProgress-barColorPrimary {
+  background-color: #00bbb4 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 0 !important;
+  border-color: transparent !important;
+}
+
+.globalAlertAr .MuiAlert-action {
+  margin-right: auto;
+  margin-left: -8px;
+}
+
+.globalAlertAr .MuiAlert-icon {
+  margin-left: 12px;
+}
