@@ -15,31 +15,42 @@ const Search = () => {
       setList(List);
       setLoading(false);
     });
-  }, [List, searchresults]);
+  }, []);
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (e, id) => {
+    setLoading(true);
+
     try {
       setQuery(e.target.value); // for update query value
       await BooksAPI.search(e.target.value).then((e) => {
-        // for test if it is already array as document guide here .. >>>
         if (Array.isArray(e)) {
+          e.map((book) =>
+            List.filter((b) => b.id === book.id).map(
+              (b) => (book.shelf = b.shelf)
+            )
+          );
           //  https://www.w3schools.com/jsref/jsref_isarray.asp
           setSearchresults(e);
+          console.log("setSearchresults:", searchresults);
+        } else {
+          e = [];
         }
       });
+      setLoading(false);
     } catch (err) {
       throw err;
     }
   };
 
-  const onChangeShelf = async (id, event) => {
+  const onChangeShelf = (id, event) => {
     try {
       setLoading(true);
       const booksList = List;
       const book = booksList.filter((book) => book.id === id)[0]; // getting book with id
-      await BooksAPI.update(book, event.target.value) // for update api data
+      BooksAPI.update(book, event.target.value) // for update api data
         .then(() => {
-          setList(booksList);
+          setList([...booksList.filter((b) => b.id !== book.id), book]);
+          // alert(`your book already add to ${book.shelf}`); // just alert for fun
           setLoading(false);
         });
     } catch (err) {
@@ -47,16 +58,20 @@ const Search = () => {
     }
   };
 
-  const onChangeShelfResult = async (id, event) => {
+  const onChangeShelfResult = (id, event) => {
     try {
       setLoading(true);
-      const book = searchresults.filter((book) => book.id === id)[0]; // getting book with id
-      const res = await BooksAPI.update(book, event.target.value); // for update api data
-      if (res) {
-        setList(res);
-        setLoading(false);
-        alert(`your book already add to ${event.target.value}`); // just alert for fun}catch(){}
-      }
+      const booksList = searchresults;
+      const book = booksList.filter((book) => book.id === id)[0]; // getting book with id
+      BooksAPI.update(book, event.target.value) // for update api data
+        .then(() => {
+          setSearchresults([
+            ...booksList.filter((b) => b.id !== book.id),
+            book,
+          ]);
+          setLoading(false);
+          alert(`your book already add to ${event.target.value}`); // just alert for fun
+        });
     } catch (err) {
       throw err;
     }
@@ -96,7 +111,8 @@ const Search = () => {
         <div className="search-books-results">
           <ol className="books-grid">
             {query !== ""
-              ? searchresults.map((book) => (
+              ? searchresults &&
+                searchresults.map((book) => (
                   <Book
                     book={book}
                     onChangeShelf={onChangeShelfResult}

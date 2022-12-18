@@ -4,6 +4,7 @@ import Loader from "../loader";
 import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 import Shelf from "./shelf";
+import { Data } from "../utiles/constants";
 
 const BooksApp = (props) => {
   const [List, setList] = useState([null]);
@@ -15,22 +16,25 @@ const BooksApp = (props) => {
   };
   useEffect(() => {
     loadData();
-  }, [List]);
+  }, []);
 
   const onChangeShelf = (id, event) => {
     try {
+      setLoading(true);
       const booksList = List;
       const book = booksList.filter((book) => book.id === id)[0]; // getting book with id
       book.shelf = event.target.value;
       BooksAPI.update(book, book.shelf) // for update api data
         .then(() => {
-          setList(booksList);
+          setList([...booksList.filter((b) => b.id !== book.id), book]);
           // alert(`your book already add to ${book.shelf}`); // just alert for fun
+          setLoading(false);
         });
     } catch (err) {
       throw err;
     }
   };
+  console.log("Data", Data.id);
   return (
     <div className="app">
       <div className="list-books">
@@ -66,6 +70,16 @@ const BooksApp = (props) => {
                 onChangeShelf={onChangeShelf}
               />
             </div>
+            // <div>
+            //   {Data?.map((item) => (
+            //     <Shelf
+            //       title={item.title}
+            //       type={item.type}
+            //       List={List}
+            //       onChangeShelf={onChangeShelf}
+            //     />
+            //   ))}
+            // </div>
           )}
         </div>
 
